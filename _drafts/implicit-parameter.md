@@ -1,6 +1,13 @@
+---
+layout: post
+title: Implicit Parameter
+comments: true
+---
+
 Scala allows function to take implicit parameters. The implicit parameters are usually objects that are needed by a series of functions to perform their duties. When an object of appropriate type is available in the scope, all the functions can receive this object implicitly, making the code more concise. 
 
 Let's look at an example. Suppose you write code for a logistics department of a company. The employee of the logistics department are shippers who will send and receive items. The shipping service are provided by Fedex, UPS or USPS. 
+
 ``` scala
 case class Item(name: String)
 case class ShippingService(name: String)
@@ -32,7 +39,6 @@ case class Shipper(name) {
 }
 ```
 
-
 Before Tom before going through the shipping list, we declare Fedex as an implicit in the scope of the code. Then Tom's daily chores become a lot simpler:
 
 ``` scala
@@ -54,3 +60,11 @@ implicit val fedex = ShippingService("Fedex")
 tom.send(Item("Apple")) // use Fedex
 tom.send(Item("Piano"))(ShippingService("USPS")) // USPS is cheaper for large items.
 ```
+
+So implicit is really a nice feature of Scala that will make your code more concise without sacrificing flexibility. 
+
+Before you accuse me of drinking too much implicit Kool-Aid, I strongly encourage you to think twice before declaring implicit parameters. For example, if you hand the one liner `tom.send(Item("Apple"))` to a colleague, there is absolutely no way for him to know `send` takes an implicit parameter. Without a trip to source code of `Shipper`, he is likely to scratch his head wondering where the `Item("Apple")` is sent to. 
+
+My recommendation for introducing implicit to your project: use implicit sparsely, and when you do, document where implicits are used at the beginning of the your README. 
+
+PS: I have written another blog post to discuss why you will use curried function for implicit parameters. 
