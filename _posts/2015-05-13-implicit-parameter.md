@@ -8,13 +8,13 @@ Scala allows function to take implicit parameters. The implicit parameters are u
 
 <!-- more -->
 
-Let's look at an example. Suppose you write code for a logistics department of a company. The employee of the logistics department are shippers who will send and receive items. The shipping service are provided by Fedex, UPS or USPS. 
+Let's look at an example. Suppose you write code for the logistics department of a company. The employee of the logistics department are shippers who will send and receive items. The shipping service are provided by Fedex, UPS or USPS. 
 
 ``` scala
 case class Item(name: String)
 case class ShippingService(name: String)
 
-case class Shipper(name) {
+case class Shipper(name :String) {
 	def send(item: Item, to: ShippingService)
 	def receive(from: ShippingService): Item
 }
@@ -69,4 +69,4 @@ Before you accuse me of drinking too much implicit Kool-Aid, I strongly encourag
 
 My recommendation for introducing implicit to your project: use implicit sparsely, and when you do, document where implicits are used at the beginning of the your README. 
 
-PS: I have written another blog post to discuss why you will use curried function for implicit parameters. 
+PS: I have written another [blog post](/2015/05/10/when-to-use-curried-function/) to discuss why you will use curried function for implicit parameters. 
