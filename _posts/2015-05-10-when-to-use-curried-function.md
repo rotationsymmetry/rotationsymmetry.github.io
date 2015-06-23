@@ -41,7 +41,7 @@ sealed class List[+T] {
 }
 ```
 
-Pretty standard isn't it? Let test `foldLeft`:
+Pretty standard isn't it? Let's test `foldLeft`:
 
 ``` scala
 scala> val data = Con(1, Con(2, Con(3, Empty)))
@@ -68,7 +68,7 @@ While this works, it is quite tedious and error prone to do the annotation every
   }
 ```
 
-Let's test `curryFoldLeft` without annotating the signature of the anomymous function. It works as expected. 
+Let's test `curryFoldLeft` without annotating the signature of the anomymous function. It works as expected:
 
 ``` scala
 scala> data.curryFoldLeft(0)((x, y)=>x+y)
