@@ -3,14 +3,14 @@ markdown:         redcarpet
 redcarpet:
   extensions: ["tables"]
 
-pygments:         true
+highlighter:         true
 
 # Permalinks
-permalink:        pretty
+permalink:        /:year/:month/:day/:title/
 
 # Setup
 title:            Rotation Symmetry
-tagline:          'Scala, Python, and Data Analytics'
+tagline:          'Scala, Spark and Data Analytics'
 url:              http://rotationsymmetry.github.io
 shorturl:         
 
@@ -28,8 +28,9 @@ github:
 
 # This is the list of pages to include in the header of the website.
 pages_list:       
-  About: '/about/'
+  By Category: '/category/'
   Archive: '/archive/'
+  About: '/about/'
   Feed: '/atom.xml'
 
 # Allow URL Redirects: 
