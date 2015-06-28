@@ -202,9 +202,10 @@ blockquote p:last-child {
 
 img {
   display: block;
-  max-width: 100%;
+  max-width: 80%;
   margin: 0 0 1rem;
   border-radius: 5px;
+  box-shadow: 0.8rem 0.8rem 0.4rem #888888;
 }
 
 /* Tables */
