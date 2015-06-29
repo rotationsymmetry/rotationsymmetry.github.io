@@ -206,6 +206,9 @@ img {
   margin: 0 0 1rem;
   border-radius: 5px;
   box-shadow: 0.8rem 0.8rem 0.4rem #888888;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.1rem;
 }
 
 /* Tables */

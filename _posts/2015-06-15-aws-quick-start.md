@@ -16,7 +16,7 @@ From the day you sign up, you can enjoy the free-tiered service for 12 months, w
 
 After completing the sign-up process, you can go to the [AWS console] (https://console.aws.amazon.com/) to browse the available service.
 
-![AWS Console](/images/aws/aws_console.png) *AWS Console*
+![AWS Console](/images/aws/aws_console.png)
 
 
 ## Identify & Access Management (IAM)
@@ -39,7 +39,6 @@ You can add an user using the [IAM](https://console.aws.amazon.com/iam/) module 
 *  Save system generated `Access Key ID` and `Secrete Access Key` to some safe location. *This is your only chance to save them.*
 
 ![Access Key ID and Secrete Access Key](/images/aws/ID_and_secret_key.png)
-*Access Key ID and Secrete Access Key*
 
 
 
@@ -69,10 +68,9 @@ Before I conclude this post, I would like to discuss one more set of keys. After
 
 Finally, you will run `chmod 400 sparkkeypair.pem` to ensure that only you have read access to the file, making it truly private. Otherwise, `ssh` will not recognize the priate key.
 
-All right, that is all you need to prepare for a Spark cluster in AWS. In the next post, I will go over the Spark EC2 script to really step the cluster. Stay tuned.
+All right, that is all you need to prepare for a Spark cluster in AWS. In the [next post](/2015/06/16/spark-ec2-script/), I will go over the Spark EC2 script to really step the cluster. Stay tuned.
 
 
 
 
 ![EC2](/images/aws/ec2.png)
-*EC2*
