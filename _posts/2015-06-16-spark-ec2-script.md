@@ -4,19 +4,19 @@ title: Launch a Cluster with Spark EC2 Script
 comments: true
 categories: Spark
 ---
-Following up with my [previous post](/2015/06/15/aws-quick-start/) on preparing AWS for Spark Cluster, I will go over how to use Spark EC2 Script to launch a Spark Cluster in EC2
+Following up with my [previous post](/2015/06/15/aws-quick-start/) on preparing AWS for the Spark Cluster, I will go over how to use Spark EC2 Script to launch a Spark Cluster.
 
 <!-- more -->
 
 For a birdeye view, the Spark EC2 Script is python script that
 
-* launch the master and slave instances for your cluster.
+* launch the master and slave instances for your cluster
  * This is an AWS operation so the Spark EC2 script will need to authenticate with AWS programmatically by `Access Key ID` and `Secrete Access Key` of an AWS user.
 
-* Set up Hadoop and Spark in the instances.
- * This is an operation inside the instances so the Spark EC2 script will need to `ssh` into the instance with `ssh` private key.
+* Set up Hadoop and Spark in the instances
+ * This is an operation inside the instances so the Spark EC2 script will need to `ssh` into the instance with the `ssh` private key.
 
-Before we provide, let's assume you have done the following:
+Before we proceed, let's assume you have done the following:
 
 * Set up a user in IAM
 * Obtain the `Access Key ID` and `Secrete Access Key` for that user

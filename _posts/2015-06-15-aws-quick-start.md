@@ -36,7 +36,7 @@ You can add an user using the [IAM](https://console.aws.amazon.com/iam/) module 
 * click `Users` tab on the left column
 * click `Create New Users` button
 *  Type in the user name and click `Create`
-*  Save system generated `Access Key ID` and `Secrete Access Key` to some safe location. *This is your only chance to save them.*
+*  Save system generated `Access Key ID` and `Secrete Access Key` to some safe location. *Please save it; this is your only chance.*
 
 ![Access Key ID and Secrete Access Key](/images/aws/ID_and_secret_key.png)
 
@@ -69,8 +69,6 @@ Before I conclude this post, I would like to discuss one more set of keys. After
 Finally, you will run `chmod 400 sparkkeypair.pem` to ensure that only you have read access to the file, making it truly private. Otherwise, `ssh` will not recognize the priate key.
 
 All right, that is all you need to prepare for a Spark cluster in AWS. In the [next post](/2015/06/16/spark-ec2-script/), I will go over the Spark EC2 script to really step the cluster. Stay tuned.
-
-
 
 
 ![EC2](/images/aws/ec2.png)
