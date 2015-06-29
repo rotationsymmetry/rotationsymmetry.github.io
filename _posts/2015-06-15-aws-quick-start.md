@@ -40,7 +40,9 @@ You can add an user using the [IAM](https://console.aws.amazon.com/iam/) module 
 
 ![Access Key ID and Secrete Access Key](/images/aws/ID_and_secret_key.png)
 
+For security purpose, a newly created user has no permission to perform any task in AWS. To grant permission, select the user in the `Users` section of the IAM module, and then click `attach policy`. AWS provide a wide variety of the permissions to meet your requirement. Because we need the user to perform task for the EC2 service (described in the next section), we grant `AmazonEC2FullAccess` permission to the user.
 
+![Permission](/images/aws/permissions.png)
 
 ## Elastic Compute Cloud (EC2)
 Elastic Compute Cloud (EC2) is the AWS component that manages the virtual machine hardware and images as well as its life cycle (launch, terminate, etc).
