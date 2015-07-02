@@ -4,7 +4,7 @@ title: Dynamic Programming in Scala
 comments: true
 categories: Scala
 ---
-[Dynamic programing](https://en.wikipedia.org/wiki/Dynamic_programming) is a powerful technique to solve a wide variety of problems, ranging from evaluating [fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_number) to finding the [shortest path](https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm) between two nodes. The mathematical representation of dynamic programing makes it particularly interesting to implement it in a functional programing language like Scala.
+[Dynamic programing](https://en.wikipedia.org/wiki/Dynamic_programming) is a powerful technique to solve a wide variety of problems, ranging from evaluating [fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_number) to finding the [shortest path](https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm) between two nodes. Functional properties of Scala, such as referential transparency and immutable data structure, are invaluable tools for clean and efficient implementation of dynamic programming. 
 
 <!-- more -->
 
@@ -99,4 +99,4 @@ scala> getName(mutant) // old value is returned
 res3: String = Professor X
 ```
 
-If we stick with immutable objects, such funny situation will never occur since a new object with a different hash code will be created whenever the object is updated. A simple to way to ensure the object are immutable is use compose the objects with subclass of `AnyVal`, immutable collections and case classes.
+If we stick with immutable objects, such funny situation will never occur since a new object with a different hash code will be created whenever an immutable object is updated. A simple to way to ensure the object are immutable is to compose objects with subclass of `AnyVal`, immutable collections and case classes.
