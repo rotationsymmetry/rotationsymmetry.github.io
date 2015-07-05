@@ -9,12 +9,15 @@ layout: page
 <article class="post">
 <header class="post-header">
 {% assign item=site.tag_names[tg]%}
-{{item.name}}
+<h2 class="post-title">{{item.name}}</h2>
 </header>
-<ul>
+<div class="Table">
 {% for post in site.tags[tg] %}
-  <li><a href="{{ post.url }}/">{{ post.title }}</a></li>
+<div class="Row">
+  <div clas="Cell">{{post.date | date_to_string}}</div>
+  <div class="Cell"><a href="{{ post.url }}/">{{ post.title }}</a></div>
+</div>
 {% endfor %}
-</ul>
+</div>
 </article>
 {% endfor %}

@@ -1,6 +1,7 @@
 ---
 layout: page
-title: About me 
+title: About me
 ---
-
-This is a static page. It could be an 'about page' if you'd like.
+<article class="post">
+If you like my website, you can reach me by rotationsymmetry14@gmail.com.
+</article>

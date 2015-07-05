@@ -1,17 +1,19 @@
 ---
 layout: page
-title: category
 ---
 
 
 
 <article class="post">
 <header class="post-header">
-Archive
+<h2 class="post-title">Archive</h2>
 </header>
-<ul>
+<div class="Table">
 {% for post in site.posts %}
-  <li><a href="{{ post.url }}/">{{ post.title }}</a></li>
+<div class="Row">
+  <div clas="Cell">{{post.date | date_to_string}}</div>
+  <div class="Cell"><a href="{{ post.url }}/">{{ post.title }}</a></div>
+</div>
 {% endfor %}
-</ul>
+</div>
 </article>

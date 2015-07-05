@@ -19,7 +19,21 @@
     12. Animations
 
 */
-
+.Table
+    {
+        display: table;
+    }
+    .Row
+    {
+        display: table-row;
+    }
+    .Cell
+    {
+        display: table-cell;
+        border: none;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 /* ==========================================================================
    0. Normalize.css v2.1.3 | MIT License | git.io/normalize | (minified)
    ========================================================================== */

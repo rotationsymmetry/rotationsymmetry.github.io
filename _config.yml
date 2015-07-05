@@ -1,16 +1,16 @@
 name: Rotation Symmetry's Blog
-description: Scala, Spark and Data Analytics
-meta_description: "Your New Jekyll Site, Blogging about stuffs"
+description: Application Development and Data Analytics
+meta_description: "My blog on application deveopment and data analytics with Scala and Python."
 
 markdown: redcarpet
 redcarpet:
   extensions: ["smart", "tables", "no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data"]
 highlighter: pygments
-logo: false
+
+permalink:        /:year/:month/:day/:title/
 paginate: 5
 baseurl: /
-domain_name: 'http://yourblog-domain.com'
-google_analytics: 'UA-XXXXXXXX-X'
+
 
 # Details for the RSS feed generator
 url:            'blog url'
