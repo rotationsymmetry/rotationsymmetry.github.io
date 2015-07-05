@@ -11,8 +11,8 @@ title: Home
 <article class="post">
     <header class="post-header">
         <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
-        {{ post.date | date_to_string }}
     </header>
+    {% assign article=post %} {% include article_meta.html%}
     <section class="post-excerpt">
         {{ post.excerpt }} <a class="read-more" href="{{ post.url }}">&raquo;</a>
     </section>

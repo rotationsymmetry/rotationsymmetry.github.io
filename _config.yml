@@ -12,10 +12,6 @@ paginate: 5
 baseurl: /
 
 
-# Details for the RSS feed generator
-url:            'blog url'
-author:         'Your Name'
-
 
 defaults:
   -
@@ -32,3 +28,5 @@ tag_names:
     name: "Scala"
   spark:
     name: "Spark"
+  python:
+    name: "Python"
