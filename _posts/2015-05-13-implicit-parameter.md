@@ -1,7 +1,5 @@
 ---
-layout: post
 title: Implicit Parameter
-comments: true
 tags: scala
 ---
 

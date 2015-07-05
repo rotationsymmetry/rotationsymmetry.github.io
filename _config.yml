@@ -16,6 +16,17 @@ baseurl: /
 url:            'blog url'
 author:         'Your Name'
 
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      comments: true
+
+
 tag_names:
   scala:
     name: "Scala"

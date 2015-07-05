@@ -1,7 +1,5 @@
 ---
-layout: post
 title: A Quick Start Guide to Amazon Web Service
-comments: true
 tags: spark
 ---
 
