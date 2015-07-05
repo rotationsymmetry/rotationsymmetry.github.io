@@ -2,7 +2,7 @@
 layout: post
 title: DSL and the Craft of Do-Until Loop
 comments: true
-categories: Scala
+tags: scala
 ---
 Scala has a `while` loop built-in. But can we craft a `Do-until` loop? It is fun to review Scala features that make it possible and debate how we should implement DSL.
 

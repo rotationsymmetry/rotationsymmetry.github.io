@@ -1,36 +1,23 @@
-# Dependencies
-markdown:         redcarpet
+name: Rotation Symmetry's Blog
+description: Scala, Spark and Data Analytics
+meta_description: "Your New Jekyll Site, Blogging about stuffs"
+
+markdown: redcarpet
 redcarpet:
-  extensions: ["no_intra_emphasis", "tables"]
+  extensions: ["smart", "tables", "no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data"]
+highlighter: pygments
+logo: false
+paginate: 5
+baseurl: /
+domain_name: 'http://yourblog-domain.com'
+google_analytics: 'UA-XXXXXXXX-X'
 
-pygments:         true
+# Details for the RSS feed generator
+url:            'blog url'
+author:         'Your Name'
 
-# Permalinks
-permalink:        /:year/:month/:day/:title/
-#permalink:        pretty
-
-# Setup
-title:            Rotation Symmetry
-tagline:          'Scala, Spark and Data Analytics'
-url:              http://rotationsymmetry.github.io
-shorturl:
-
-author:
-  name:           'M W'
-  url:
-
-paginate:         5
-
-# Custom vars
-version:          1.0.0
-
-github:
-  repo:           github.com/rotationsymmetry/rotationsymmetry.github.io
-
-# This is the list of pages to include in the header of the website.
-pages_list:
-  By Category: '/category.html'
-  Archive: '/archive.html'
-  About: '/about.html'
-
-exclude: [vendor]
+tag_names:
+  scala:
+    name: "Scala"
+  spark:
+    name: "Spark"

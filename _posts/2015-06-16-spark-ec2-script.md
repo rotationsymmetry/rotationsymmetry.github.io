@@ -2,7 +2,7 @@
 layout: post
 title: Launch a Cluster with Spark EC2 Script
 comments: true
-categories: Spark
+tags: spark
 ---
 Following up with my [previous post](/2015/06/15/aws-quick-start/) on preparing AWS for the Spark Cluster, I will go over how to use Spark EC2 Script to launch a Spark Cluster.
 

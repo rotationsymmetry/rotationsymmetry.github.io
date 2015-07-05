@@ -2,7 +2,7 @@
 layout: post
 title: A Quick Start Guide to Amazon Web Service
 comments: true
-categories: Spark
+tags: spark
 ---
 
 Over the years, Amazon Web Service (AWS) has evolved to include numerous components to meet your cloud computing needs. So AWS can be quite overwhelming if you just get started. This quick start guide will try to provide you with essential knowledge of AWS needed to set up a Spark cluster.

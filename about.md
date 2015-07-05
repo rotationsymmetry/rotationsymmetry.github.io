@@ -1,7 +1,6 @@
 ---
 layout: page
-title: About
+title: About me 
 ---
 
-
-If you like my website, you can reach me by rotationsymmetry14@gmail.com
+This is a static page. It could be an 'about page' if you'd like.

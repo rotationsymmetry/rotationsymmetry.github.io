@@ -2,7 +2,7 @@
 layout: post
 title: Implicit Parameter
 comments: true
-categories: Scala
+tags: scala
 ---
 
 Scala allows function to take implicit parameters. The implicit parameters are usually objects that are needed by a series of functions to perform their duties. When an object of appropriate type is available in the scope, all the functions can receive this object implicitly, making the code more concise.

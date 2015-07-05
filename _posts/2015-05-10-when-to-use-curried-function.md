@@ -2,16 +2,16 @@
 layout: post
 title: When to Use Curried Function
 comments: true
-categories: Scala
+tags: scala
 ---
 A friend of mine recently brought up the question of when to define a function in the curried style. Frankly speaking, I seldom use currying in my own projects. Sematically there is no real difference between a curried function and its uncurried counterpart. However, when we can consider the currying in the context of Scala, I believe there are a few scenarios that currying is worth considering.
 
 <!-- more -->
 
 ## Implicit Parameters
-I have discussed implicit parameters in another [post](/2015/05/13/implicit-parameter/). In the definition of a function, the parameters within the pair parenthesis forms a parameter group. The `implicit` keyword act on the parameter group instead of individual parameter. 
+I have discussed implicit parameters in another [post](/2015/05/13/implicit-parameter/). In the definition of a function, the parameters within the pair parenthesis forms a parameter group. The `implicit` keyword act on the parameter group instead of individual parameter.
 
-``` scala 
+``` scala
 scala> def f(x: Int)(implicit y: Int, z: Double) = x + y + z
 f: (x: Int)(implicit y: Int, implicit z: Double)Double
 ```
@@ -60,9 +60,9 @@ scala> data.foldLeft(0, (x :Int, y)=>x+y)
 res0: Int = 6
 ```
 
-While this works, it is quite tedious and error prone to do the annotation everywhere. A better solution is to use currying. The trick is that the type inference algorithm can broadcast the type information *across* parenthesis from left to right. In `curryFoldLeft` below, once the type `S` is determined from the pair of parethesis on the left, the type inference algorithm will also know the signature of `f`. 
+While this works, it is quite tedious and error prone to do the annotation everywhere. A better solution is to use currying. The trick is that the type inference algorithm can broadcast the type information *across* parenthesis from left to right. In `curryFoldLeft` below, once the type `S` is determined from the pair of parethesis on the left, the type inference algorithm will also know the signature of `f`.
 
-``` scala 
+``` scala
   def curryFoldLeft[S](s: S)(f: (S, T) => S): S = this match {
     case Empty => s
     case Con(head, tail) => tail.curryFoldLeft(f(s, head))(f)
@@ -76,4 +76,4 @@ scala> data.curryFoldLeft(0)((x, y)=>x+y)
 res0: Int = 6
 ```
 
-Taking advantage of the characteristics of Scala type inference algorithm, we can define function in the curried style to minimize signature annotation. It is no surprise that the default `foldLeft` of `List[T]` in the Scala Library use currying. 
+Taking advantage of the characteristics of Scala type inference algorithm, we can define function in the curried style to minimize signature annotation. It is no surprise that the default `foldLeft` of `List[T]` in the Scala Library use currying.

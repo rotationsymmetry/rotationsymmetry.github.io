@@ -2,9 +2,9 @@
 layout: post
 title: Dynamic Programming in Scala
 comments: true
-categories: Scala
+tags: scala
 ---
-[Dynamic programing](https://en.wikipedia.org/wiki/Dynamic_programming) is a powerful technique to solve a wide variety of problems, ranging from evaluating [fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_number) to finding the [shortest path](https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm) between two nodes. Functional properties of Scala, such as referential transparency and immutable data structure, are invaluable tools for clean and efficient implementation of dynamic programming. 
+[Dynamic programing](https://en.wikipedia.org/wiki/Dynamic_programming) is a powerful technique to solve a wide variety of problems, ranging from evaluating [fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_number) to finding the [shortest path](https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm) between two nodes. Functional properties of Scala, such as referential transparency and immutable data structure, are invaluable tools for clean and efficient implementation of dynamic programming.
 
 <!-- more -->
 
