@@ -8,14 +8,13 @@ layout: page
 
 <article class="post">
 <header class="post-header">
-{% assign item=site.tag_names[tg]%}
-<h2 class="post-title"><a name="{{tg}}">{{item.name}}</a></h2>
+<h2 class="post-title"><a name="{{tg}}">{{site.tag_names[tg].name}}</a></h2>
 </header>
 <div class="Table">
 {% for post in site.tags[tg] %}
 <div class="Row">
   <div clas="Cell">{{post.date | date_to_string}}</div>
-  <div class="Cell"><a href="{{ post.url }}/">{{ post.title }}</a></div>
+  <div class="Cell"><a href="{{ post.url }}">{{ post.title }}</a></div>
 </div>
 {% endfor %}
 </div>
