@@ -4,7 +4,7 @@ meta_description: "My blog on application deveopment and data analytics with Sca
 
 markdown: redcarpet
 redcarpet:
-  extensions: ["smart", "tables", "no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data"]
+  extensions: ["smart", "tables", "no_intra_emphasis", "fenced_code_blocks", "with_toc_data"]
 highlighter: pygments
 
 permalink:        /:year/:month/:day/:title/
@@ -30,3 +30,5 @@ tag_names:
     name: "Spark"
   python:
     name: "Python"
+  analytics:
+    name: "Analytics"
