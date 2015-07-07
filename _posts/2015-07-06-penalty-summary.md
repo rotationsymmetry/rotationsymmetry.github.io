@@ -8,7 +8,7 @@ Penalty terms are essential tools to manage regularities for statistical learnin
 
 The idea behind the penalty term is quite straightforward: more desirable models will be assigned a lower penalty in the cost function of statistical learning procedures; and vise versa for the less desirable ones . So the desirable models are more likely to be selected by the learning algorithm.
 
-What models are considered desirable? Among the thousands of predictors in high dimensional data, usually a few are relevant for analytical purposes and the rest are typically noise. A desirable model should include only the relevant predictors. Furthermore, for supervised learning, a desirable model should provide accurate and stable estimate for the effect of these predictors. 
+What models are considered desirable? Among the thousands of predictors in high dimensional data, usually only a few are relevant for analytical purposes and the rest are typically noise. A desirable model should include only the relevant predictors. Furthermore, for supervised learning, a desirable model should provide accurate and stable estimate for the effect of these predictors. 
 
 Over past decades, many penalty terms have been discovered or designed to identify these desirable models. A few of them received more attention and are more commonly used: ridge, lasso, SCAD, adaptive lasso and elastic net. The original paper that introduce these penalty terms can be readily found with google. So I will not going to details. Instead, I create the following table to summarize the important properties of these penalty terms.
 
@@ -36,7 +36,7 @@ First and foremost, oracle property has nothing to do with Larry Ellison. In sta
 * the probability of only including the relevant variables in the model approaches to 100%
 * the estimated effect of the selected variables will center around the true effect and the variability of estimate can be sufficiently characterized.
 
-Oracle property is one of the holy grails of. A penalty with oracle property can essentially pick the needle from the haystack with ease as if it is the oracle knowing exactly where the needle is. 
+Oracle property is one of the holy grails of high dimensional statistical learning. A penalty with oracle property can essentially pick the needle from the haystack with ease as if it is the oracle knowing exactly where the needle is. 
 
 ### Handling Correlated Variables
 In the high dimensional data, there are could be one or more groups of predictors that are relevant and are highly correlated with each other within the group. Some penalty terms, such as lasso, are very likely to pick only one predictor within each group. This is of course less than ideal as we would lose information by ignoring the rest of the predictors within the same group. Convex penalties, such as elastic net, are able to overcome this and include all predictors.
