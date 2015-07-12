@@ -6,21 +6,14 @@ Neural network deep learning is probably the hottest buzzword for machine learni
 
 <!-- more -->
 
-
-## The Theory
-It has been proved in the theory that the a neural network with enough neurons can represent or approximate
+It has been proved that both decision trees and neural networks can represent (or approximate):
 
 * Any boolean function
 * Any continuous function 
 
-How about decision tree? It can be shown that with enough leaf nodes, a decision tree can represent or approximate 
+So on paper, a neural network does not appear to be better than the decision. However, it is worth pointing out that what a statistical learning model can represent does not always equal to what it can learn well from empirical data. The architectural difference between neural network and decision tree can lead to disparity in learning efficiency.
 
-* Any boolean function
-* Any continuous function 
-
-So on paper, a neural network does not appear to be better than the decision. But a statistical learning model can represent or approximate something does not always mean it can learn it well from empirical data. There are deep architectural difference between neural network and decision trees, which leads to difference in learning efficiency under certain scenarios.
-
-## Representation Redundancy 
+## Architectural Difference 
 In a decision tree, the data flows from the root,  branches out at an inner node depending on a single condition corresponding to the node, and repeat this until it reaches a  leaf node. The decision tree approach is simple to implement and interpret. However, the simplicity also introduces representation redundancy. To see this, we can consider a simple the boolean function \\(R=(A \cap B) \cup (C \cap D)\\). The decision tree representation of this boolean function is illustrated in the figure below:
 
 The two subtrees involving \\(C\\) and \\(D\\) are identical and they are obviously duplicated. The logics with \\(C\\) and \\(D\\) are in *parallel* with the logics of \\(A\\) and \\(B\\). As a result, we need to repeatedly consider \\(C\\) and \\(D\\) on both branches of the inner node of \\(A\\), leading the the duplication. 
@@ -44,10 +37,8 @@ The following table summarizes the prediction errors under various scenarios.
 
 The neural network is leading the decision tree by a healthy margin in all of the simulation scenarios. Why? The LED signal detection problem is set up to have many parallel logics: The consecutive \\(q\\) "on" LED's can be placed at any location along the line. So the decision tree will contains many identical subtrees and those deep at the bottom will have very little data to learn from. 
 
-## Beyond LED Signal Detection
-
-
 ## When to Use What
+At this point, you might be tempted to ditch decision trees for good. Not so fast! Instead, I would probably advocate this strategy: try decision tree first; unless it is has been well established that neural network is better fit for your learning problem. 
 
-
+In my experience, not every learning problem features complex parallel logics. So the prediction accuracy of decision trees could be very good already. In addition, decision trees are much much quicker to train. For the simulation in the LED signal detection problem, it takes no more than 1 second to complete a set of training data with decision trees but several minutes with neural networks. The advantage of decision tree can only be more obvious when we scale up the size of the data. Computational speed is really critical for the initial exploration of data. It allows the data scientist much more time to experiment with various formulations of the learning problem, which could bring in more significant insight of the data than a few percentage point decrease in prediction error. 
 
