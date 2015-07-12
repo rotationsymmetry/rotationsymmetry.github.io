@@ -13,7 +13,7 @@ It has been proved that both decision trees and neural networks can represent (o
 
 So on paper, a neural network does not appear to be better than the decision. However, it is worth pointing out that what a statistical learning model can represent does not always equal to what it can learn well from empirical data. The architectural difference between neural network and decision tree can lead to disparity in learning efficiency.
 
-## Representation Redundancy
+## Differences in the Learning Architecture
 In a decision tree, the data flows from the root,  branches out at an inner node depending on a single condition corresponding to the node, and repeat the process until it reaches a  leaf node. The decision tree approach is simple to implement and interpret. However, the simplicity also introduces representation redundancy. To see this, we can consider a simple the boolean function \\(R=(A \cap B) \cup (C \cap D)\\). The decision tree representation of this boolean function is illustrated in the figure below:
 
 The two subtrees involving \\(C\\) and \\(D\\) are identical and duplicated. This is because the logics with \\(C\\) and \\(D\\) runs in *parallel* with the logics of \\(A\\) and \\(B\\). As a result, we need to repeatedly consider \\(C\\) and \\(D\\) on both branches of the inner node of \\(A\\), leading the the duplication.
@@ -22,7 +22,7 @@ The neural network, on the other hand, does not suffer from the same issue when 
 
 The representation redundancy in decision tree can negatively impact its learning efficiency. The decision tree algorithms is not aware that the two subtrees involving \\(C\\) and \\(D\\) are identical. Among these two subtrees, the one on the left will be trained using only the data with \\(A= True\\) and \\(B=False\\) while the one on the right using the only data with \\(A= False\\). There is no borrowing of information across the two subtrees. Consequently the learning efficiency of decision tree is reduced. In contrast, in the neural network, there is a single neuron representing \\(C \cap D \\), which will be trained using all available data. So the neural network will remain efficiency with parallel logics.
 
-For simple examples like \\((A \cap B) \cup (C \cap D)\\), both the decision tree and the neural network will learn the boolean function equally well from empirical data. For learning problems featuring more complex parallel logics, the advantage of neural network will be more prominent, as we will show in the LED signal detection problem.
+In simple examples like \\((A \cap B) \cup (C \cap D)\\), both the decision tree and the neural network will learn the boolean function equally well from empirical data. For learning problems featuring more complex parallel logics, the advantage of neural network will be more prominent, as we will show in the LED signal detection problem.
 
 ## LED Signal Detection
 Suppose \\(p\\) LED lights are along a horizontal line. They are controlled by a hidden random signal generator. The generator will set \\(q\\) consecutive LED to be on and the rest are off. The value of \\(q\\) and the locations of the \\(q\\) consecutive lights will change every second. For simplicity, \\(q\\) can take on two values \\(g\\) and \\(r\\), at 50-50 chance. In addition, we can observe a beacon. With 90% probability, the beacon will be red if \\(q=r\\) and green if \\(q=g\\).
@@ -46,9 +46,9 @@ The following table summarizes the prediction errors under various scenarios.
     <th>\\(r\\)</th>
     <th>\\(g\\)</th>
     <th>Training <br/>Set Size</th>
+    <th>Neural <br/> Network</th>
     <th>D-Tree: <br/>Gini</th>
     <th>D-Tree: <br/>Entropy</th>
-    <th>Neural <br/> Network</th>
   </tr>
   <tr>
     <td>1</td><td>500</td><td>10</td><td>15</td><td>300</td>
@@ -68,7 +68,7 @@ The following table summarizes the prediction errors under various scenarios.
   </tr>
 </table>
 
-The neural network is leading the decision tree by a healthy margin in all of the simulation scenarios. Why? The LED signal detection problem is set up to have many parallel logics: The consecutive \\(q\\) "on" LED's can be placed at any location along the line. So the decision tree will contains many identical subtrees and those deep at the bottom will have very little data to learn from.
+Neural networks are leading decision trees by a healthy margin in terms of prediction error. As you expect, the LED signal detection problem is set up to have many parallel logics: The consecutive \\(q\\) "on" LED's can be placed at any location along the line. So the decision tree will contains many identical subtrees and those deep at the bottom will have very little data to learn from.
 
 ## When to Use What
 At this point, you might be tempted to ditch decision trees for good. Not so fast! Instead, I would probably advocate this strategy: try decision tree first; unless it is has been well established that neural network is better fit for your learning problem.
