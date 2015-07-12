@@ -11,7 +11,7 @@ It has been proved that both decision trees and neural networks can represent (o
 * Any boolean function
 * Any continuous function
 
-So on paper, a neural network does not appear to be better than the decision. However, it is worth pointing out that what a statistical learning model can represent does not always equal to what it can learn well from empirical data. The architectural difference between neural network and decision tree can lead to disparity in learning efficiency.
+So on paper, a neural network does not appear to be better than the decision. However, what a statistical learning model can represent does not always equal to what it can learn from empirical data. The architectural difference between neural network and decision tree can lead to disparity in learning efficiency.
 
 ## Differences in the Learning Architecture
 In a decision tree, the data flows from the root,  branches out at an inner node depending on a single condition corresponding to the node, and repeat the process until it reaches a  leaf node. The decision tree approach is simple to implement and interpret. However, the simplicity also introduces representation redundancy. To see this, we can consider a simple the boolean function \\(R=(A \cap B) \cup (C \cap D)\\). The decision tree representation of this boolean function is illustrated in the figure below:
