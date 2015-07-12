@@ -6,7 +6,7 @@ Scala has a `while` loop built-in. But can we craft a `Do-until` loop? It is fun
 
 <!-- more -->
 
-Talk is cheap. Show you the the  code
+Talk is cheap. Show you the code
 
 ``` scala
 class Do(block: => Unit) {
