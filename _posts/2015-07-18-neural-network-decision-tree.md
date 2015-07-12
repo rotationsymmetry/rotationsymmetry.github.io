@@ -16,13 +16,12 @@ So on paper, a neural network does not appear to be better than the decision. Ho
 ## Differences in the Learning Architecture
 In a decision tree, the data flows from the root,  branches out at an inner node depending on a single condition corresponding to the node, and repeat the process until it reaches a  leaf node. The decision tree approach is simple to implement and interpret. However, the simplicity also introduces representation redundancy. To see this, we can consider a simple the boolean function \\(R=(A \cap B) \cup (C \cap D)\\). The decision tree representation of this boolean function is illustrated in the figure below:
 
-![Decision Tree Representation of Boolean Function](/images/neural-network-decision-tree/decision_tree.png)
+![Neural Network Representation of Boolean Function](/images/neural-network-decision-tree/neural_network.png)
 
 The two subtrees involving \\(C\\) and \\(D\\) are identical and duplicated. This is because the logics with \\(C\\) and \\(D\\) runs in *parallel* with the logics of \\(A\\) and \\(B\\). As a result, we need to repeatedly consider \\(C\\) and \\(D\\) on both branches of the inner node of \\(A\\), leading the the duplication.
 
 The neural network, on the other hand, does not suffer from the same issue when evaluating \\(R=(A \cap B) \cup (C \cap D)\\). As illustrated below, a neural network will simply have two neurons in the hidden layer evaluating \\(A \cap B\\) and \\(C \cap D\\) respectively; and then the combine the the results at the final output neuron.
 
-![Neural Network Representation of Boolean Function](/images/neural-network-decision-tree/neural_network.png)
 
 The representation redundancy in decision tree can negatively impact its learning efficiency. The decision tree algorithms is not aware that the two subtrees involving \\(C\\) and \\(D\\) are identical. Among these two subtrees, the one on the left will be trained using only the data with \\(A= True\\) and \\(B=False\\) while the one on the right using the only data with \\(A= False\\). There is no borrowing of information across the two subtrees. Consequently the learning efficiency of decision tree is reduced. In contrast, in the neural network, there is a single neuron representing \\(C \cap D \\), which will be trained using all available data. So the neural network will remain efficiency with parallel logics.
 
@@ -33,7 +32,10 @@ Suppose \\(p\\) LED lights are along a horizontal line. They are controlled by a
 
 The figure below depicts a few realization of the LED lights and the beacon for \\(p=16\\), \\(r=5\\) and \\(g=3\\). The circles are the the LED lights with yellow being "on" and black being "off". The triangle is the beacon. In the last one, 5 LED's are on but the beacon is green, as the beacon matches the LED only 90% of the time.
 
+
 ![LED and Beacons](/images/neural-network-decision-tree/signal_detection.png)
+
+
 
 The learning goal is to predict the color of the beacon with the on-off status of the \\(q\\) LED lights. Please note the learning algorithms only have access to the color of the beacon and the on-off status of the individual lights. The learning algorithm are not aware of the mechanism that sets the lights on or off. Otherwise, the learning problem will be too easy: Simple count how many lights are on and you are done.
 
