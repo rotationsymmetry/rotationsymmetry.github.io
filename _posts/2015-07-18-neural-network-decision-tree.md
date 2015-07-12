@@ -35,6 +35,27 @@ Next we training the learning algorithms. To keep it simple, we use neural netwo
 
 The following table summarizes the prediction errors under various scenarios. 
 
+<table>
+  <tr>
+	  <th colspan="5"></th>
+	  <th colspan="3">Prediction Error</th>
+  </tr>
+  <tr>
+    <th>Scenario</th>
+    <th>\\(p\\)</th>
+    <th>\\(r\\)</th>
+    <th>\\(g\\)</th>
+    <th>Training <br/>size</th>
+    <th>Decision Tree <br/>Gini</th>
+    <th>Decision Tree <br/>Entropy</th>
+    <th>Neural <br/> Network</th>
+  </tr>
+  <tr>
+    <td>1</td><td>500</td><td>10</td><td>15</td><td>300</td>
+	    <td>17.7%</td><td>29.9%</td><td>29.9</td>
+  </tr>
+</table>
+
 The neural network is leading the decision tree by a healthy margin in all of the simulation scenarios. Why? The LED signal detection problem is set up to have many parallel logics: The consecutive \\(q\\) "on" LED's can be placed at any location along the line. So the decision tree will contains many identical subtrees and those deep at the bottom will have very little data to learn from. 
 
 ## When to Use What
