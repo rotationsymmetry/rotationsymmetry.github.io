@@ -10,7 +10,7 @@ highlighter: pygments
 permalink:        /:year/:month/:day/:title/
 paginate: 5
 baseurl: /
-
+url: http://rotationsymmetry.github.io
 
 
 defaults:
