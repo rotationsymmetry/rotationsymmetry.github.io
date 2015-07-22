@@ -1,6 +1,6 @@
 ---
 title: Streaming Forgetful Linear Regression
-tags: [analytics spark]
+tags: [analytics, spark]
 ---
 
 In supervised learning streaming data, the relation between the label and the predictors can potentially change over time. For example ... The current implementation of [streaming linear regression]() in [Spark]() treat all streaming data coming from the same source with constant relation. Inspired by the decay factor introduced in [streaming k-means](https://databricks.com/blog/2015/01/28/introducing-streaming-k-means-in-spark-1-2.html), this post is a proposal for incorporating forgetfulness to streaming linear regression.
@@ -46,11 +46,16 @@ A critical observation is that we only need  \\(X_i^tX_i\\) and  \\(X_i^ty_i\\) 
 
 ## Computation Complexity
 
-Step | Complexity
-------|--------------
-Process the RDD in one pass to get \\(X_i^tX_i\\) and  \\(X_i^ty_i\\) |jj
-Set \\(curXX=curXX+X_i^tX_i\\) and \\(curXY=curXY+X_i^ty_i\\) | kk
-To process 
+At time point \\(i\\), the RDD \\(R_i\\) has \\(n_i\\) records and the feature vectors are of dimension \\(p\\). We have \\(k\\) executioners and we perform \\(q\\) iteration for the gradient descend. The following are the algorithm and computation complexity. 
+
+Steps | Time Complexity
+-|-
+Process \\(R_i\\) in one pass to get \\(X_i^tX_i\\) and  \\(X_i^ty_i\\)  | \\(O(p^2\cdot n / k)\\)
+Set \\(curXX=a \cdot curXX+X_i^tX_i\\) | \\(O(p^2 )\\)
+Set \\(curXY=a \cdot curXY+X_i^ty_i\\) | \\(O(p)\\)
+Use gradient descend to find \\(\beta\\) | \\(O(p^2\cdot q)\\)
+
+If 
 
 
 
