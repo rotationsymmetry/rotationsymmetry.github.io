@@ -21,7 +21,7 @@ If we have access to \\(R_1\\) and \\(R_2\\)  simultaneously, the optimization o
 ## Math for Streaming Weighted Loss
 Stacking the labels and features, we can form the vector \\(y_i \\) and matrix \\(X_i\\) for \\(i=1,2\\):
 
-$$
+\\[
 y_i =
 \left( \begin{array}{c}
 y_{i1} \\
@@ -34,7 +34,7 @@ x_{i1} \\
 \vdots \\
 x_{ij_i}  \\
 \end{array} \right)
-$$
+\\]
 
 Then weighted loss can be written as
 $$a\cdot (X_1\cdot \beta -y_1)^t(X_1\cdot \beta -y_1)+(X_2\cdot \beta -y_2)^t(X_2\cdot \beta -y_2)$$
