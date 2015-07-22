@@ -24,14 +24,14 @@ Stacking the labels and features, we can form the vector \\(y_i \\) and matrix \
 \\[
 y_i =
 \left( \begin{array}{c}
-y_{i1} \\ \\
-\vdots \\\\
+y_{i1} \\newline
+\vdots \\newline
 y_{ij_i}  
 \end{array} \right),
 X_i =
 \left( \begin{array}{c}
-x_{i1} \\\\
-\vdots \\\\
+x_{i1} \\newline
+\vdots \\newline
 x_{ij_i}
 \end{array} \right)
 \\]
