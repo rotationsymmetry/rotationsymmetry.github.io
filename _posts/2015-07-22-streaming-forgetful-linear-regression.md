@@ -11,7 +11,7 @@ $$\sum_j (x_{1j}\cdot \beta-y_{1j})^2+\sum_j (x_{2j}\cdot \beta-y_{2j})^2$$
 To incorporate the forgetfulness, we can introduce a decay factor \\(a\\) and consider the weighted square loss
 $$a\sum_j (x_{1j}\cdot \beta-y_{1j})^2+\sum_j (x_{2j}\cdot \beta-y_{2j})^2$$
 
-* When \\(a=1\\), \\( R_1\\) is completely remembered and contribute equally to loss as in \\( R_2\\).
+* When \\(a=1\\), \\( R_1\\) is completely remembered and contributes equally to loss as in \\( R_2\\).
 * When \\(a=0\\), \\( R_1\\) is completely forgotten and contributes nothing to the loss.
 
 A value of \\(a\\) between 0 and 1 characterizes the level of forgetfulness. For easy interpretation, we can derive \\(a\\) using half life as in [streaming k-means](https://databricks.com/blog/2015/01/28/introducing-streaming-k-means-in-spark-1-2.html).
@@ -43,9 +43,9 @@ $$(a\cdot X_1^tX_1+X_2^tX_2)\beta-(a\cdot X_1^ty_1+X_2^ty_2)$$
 
 A critical observation is that we only need  \\(X_i^tX_i\\) and  \\(X_i^ty_i\\) to evaluate the gradient. All the information in \\(R_i\\) that is relevant to the linear regression is summarized in these two statistics. They are considered as [sufficient statistics](https://en.wikipedia.org/wiki/Sufficient_statistic). 
 
-This observation provides a shortcut for optimizing the weighted loss in streaming: After process the data in \\(R_1\\), we can persist \\(X_1^tX_1\\) and  \\(X_1^ty_1\\) for use in processing \\(R_2\\). Because the dimensions of \\(X_i^tX_i\\) and  \\(X_i^ty_i\\) are only \\(p\times p\\) and \\(p\\), they are trivial to persist in storage compared to the entire RDD's. 
+This observation provides a shortcut for optimizing the weighted loss in streaming: After processing the data \\(R_1\\), we can persist \\(X_1^tX_1\\) and  \\(X_1^ty_1\\) for use in processing \\(R_2\\). Because the dimensions of \\(X_i^tX_i\\) and  \\(X_i^ty_i\\) are only \\(p\times p\\) and \\(p\\), they are trivial to persist in storage compared to the entire RDD's. 
 
-We can extend this idea to development a streaming forgetful linear regression algorithm. 
+We can extend this idea to implement a streaming forgetful linear regression algorithm. 
 
 ## Streaming Algorithm and Complexity
 
@@ -66,3 +66,40 @@ The space complexity is constant in \\(O(p^2)\\).
 
 ## Proposed Public API
 We will introduce two public classes to implement the streaming forgetful linear regression. 
+
+A user will mostly interactive with the `StreamingForgetfulLinearRegression` class. It is designed to be mimic the existing `StreamingLinearRegressionWithSGD` and can be used as drop in replacement. 
+``` scala
+class StreamingForgetfulLinearRegression
+  extends StreamingLinearAlgorithm[LinearRegressionModel, StreamingForgetfulLinearRegressionAlgorithm] with Serializable {
+  /**
+   * The following methods are directly inherited 
+   * from StreamingLinearAlgorithm.
+   * No coding is needed.
+   */
+  def latestModel(): LinearRegressionModel
+  def trainOn(data: DStream[LabeledPoint]): Unit
+  def trainOn(data: JavaDStream[LabeledPoint]): Unit
+  def predictOn(data: DStream[Vector]): DStream[Double]
+  def predictOn(data: JavaDStream[Vector]): JavaDStream[java.lang.Double]
+  def predictOnValues[K: ClassTag](data: DStream[(K, Vector)]): DStream[(K, Double)]
+  def predictOnValues[K](data: JavaPairDStream[K, Vector]): JavaPairDStream[K, java.lang.Double]
+
+  /**
+   * The following are setter methods for 
+   * fluent syntax. They are new code.
+   */
+  def setDecayFactor(a: Double): this.type
+  def setHalfLife(halfLife: Double, timeUnit: String): this.type
+  def setStepSize(stepSize: Double): this.type
+  def setNumIterations(numIterations: Int): this.type
+  def setInitialWeights(initialWeights: Vector): this.type 
+}
+```
+
+The actual learning algorithm is implemented in `StreamingForgetfulLinearRegressionAlgorithm`. We will override the `run` method with our algorithm implementation. The \\(cXX\\) and \\(cXY\\) will be persisted as private members of this class.
+``` scala
+class StreamingForgetfulLinearRegressionAlgorithm
+  extends GeneralizedLinearAlgorithm[LinearRegressionModel] with Serializable {
+  override def run(rdd: RDD[LabeledPoint], initialWeights: Vector): LinearRegressionModel
+}
+```
