@@ -35,6 +35,7 @@ x_{i1} \\
 x_{ij_i}  \\
 \end{array} \right)
 $$
+
 Then weighted loss can be written as
 $$a\cdot (X_1\cdot \beta -y_1)^t(X_1\cdot \beta -y_1)+(X_2\cdot \beta -y_2)^t(X_2\cdot \beta -y_2)$$
 This is a convex function with respect to \\(\beta\\) and we can find the global minimum by gradient descend. The gradient with respect to \\(\beta\\):
