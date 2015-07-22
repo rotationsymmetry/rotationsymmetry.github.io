@@ -24,7 +24,7 @@ Stacking the labels and features, we can form the vector \\(y_i \\) and matrix \
 \\[
 y_i =
 \left( \begin{array}{c}
-y_{i1} \\\\
+y_{i1} `\\`
 \vdots \\\\
 y_{ij_i}  
 \end{array} \right),
