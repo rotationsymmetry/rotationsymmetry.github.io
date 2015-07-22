@@ -41,17 +41,17 @@ $$a\cdot (X_1\cdot \beta -y_1)^t(X_1\cdot \beta -y_1)+(X_2\cdot \beta -y_2)^t(X_
 This is a convex function with respect to \\(\beta\\) and we can find the global minimum by gradient descend. The gradient with respect to \\(\beta\\):
 $$(a\cdot X_1^tX_1+X_2^tX_2)\beta-(a\cdot X_1^ty_1+X_2^ty_2)$$
 
-A critical observation is that we only need  \\(X_i^tX_i\\) and  \\(X_i^ty_i\\) to evaluate the gradient. All the information in \\(R_i\\) that is relevant to the linear regression is summarized in these two statistics. They are considered as [sufficient statistics](https://en.wikipedia.org/wiki/Sufficient_statistic). 
+A critical observation is that we only need  \\(X_i^tX_i\\) and  \\(X_i^ty_i\\) to evaluate the gradient. All the information in \\(R_i\\) that is relevant to the linear regression is summarized in these two statistics. They are considered as [sufficient statistics](https://en.wikipedia.org/wiki/Sufficient_statistic).
 
-This observation provides a shortcut for optimizing the weighted loss in streaming: After processing the data \\(R_1\\), we can persist \\(X_1^tX_1\\) and  \\(X_1^ty_1\\) for use in processing \\(R_2\\). Because the dimensions of \\(X_i^tX_i\\) and  \\(X_i^ty_i\\) are only \\(p\times p\\) and \\(p\\), they are trivial to persist in storage compared to the entire RDD's. 
+This observation provides a shortcut for optimizing the weighted loss in streaming: After processing the data \\(R_1\\), we can persist \\(X_1^tX_1\\) and  \\(X_1^ty_1\\) for use in processing \\(R_2\\). Because the dimensions of \\(X_i^tX_i\\) and  \\(X_i^ty_i\\) are only \\(p\times p\\) and \\(p\\), they are trivial to persist in storage compared to the entire RDD's.
 
-We can extend this idea to implement a streaming forgetful linear regression algorithm. 
+We can extend this idea to implement a streaming forgetful linear regression algorithm.
 
 ## Streaming Algorithm and Complexity
 
-At time point \\(i\\), the RDD \\(R_i\\) has \\(n_i\\) records and the feature vectors are of dimension \\(p\\). The cluster has \\(k\\) worker nodes and we perform \\(q\\) iteration for the gradient descend. The matrix \\(XX\\) and vector \\(XY\\) persist the weighted sum of \\(X_j^tX_j\\) and \\(X_j^ty_j\\) from previous time points. 
+At time point \\(i\\), the RDD \\(R_i\\) has \\(n_i\\) records and the feature vectors are of dimension \\(p\\). The cluster has \\(k\\) worker nodes and we perform \\(q\\) iteration for the gradient descend. The matrix \\(XX\\) and vector \\(XY\\) persist the weighted sum of \\(X_j^tX_j\\) and \\(X_j^ty_j\\) from previous time points.
 
-The following are the algorithm and time complexity. 
+The following are the algorithm and time complexity.
 
 Steps | Time Complexity
 ------|----------------
@@ -60,19 +60,20 @@ Set \\(XX=a \cdot XX+X_i^tX_i\\) | \\(O(p^2 )\\)
 Set \\(XY=a \cdot XY+X_i^ty_i\\) | \\(O(p)\\)
 Use gradient descend to find \\(\beta\\) | \\(O(p^2\cdot q)\\)
 
-\\(p\\) is much less than \\(n_i\\) in general. So the time complexity of algorithm is expected to scale linearly with the size of the RDD. 
+\\(p\\) is much less than \\(n_i\\) in general. So the time complexity of algorithm is expected to scale linearly with the size of the RDD.
 
 The space complexity is constant in \\(O(p^2)\\).
 
 ## Proposed Public API
-We will introduce two public classes to implement the streaming forgetful linear regression. 
+We will introduce two public classes to implement the streaming forgetful linear regression.
 
-A user will mostly interactive with the `StreamingForgetfulLinearRegression` class. It is designed to be mimic the existing `StreamingLinearRegressionWithSGD` and can be used as drop in replacement. 
+A user will mostly interactive with the `StreamingForgetfulLinearRegression` class. It is designed to be mimic the existing `StreamingLinearRegressionWithSGD` and can be used as drop in replacement.
+
 ``` scala
 class StreamingForgetfulLinearRegression
   extends StreamingLinearAlgorithm[LinearRegressionModel, StreamingForgetfulLinearRegressionAlgorithm] with Serializable {
   /**
-   * The following methods are directly inherited 
+   * The following methods are directly inherited
    * from StreamingLinearAlgorithm.
    * No coding is needed.
    */
@@ -85,18 +86,19 @@ class StreamingForgetfulLinearRegression
   def predictOnValues[K](data: JavaPairDStream[K, Vector]): JavaPairDStream[K, java.lang.Double]
 
   /**
-   * The following are setter methods for 
+   * The following are setter methods for
    * fluent syntax. They are new code.
    */
   def setDecayFactor(a: Double): this.type
   def setHalfLife(halfLife: Double, timeUnit: String): this.type
   def setStepSize(stepSize: Double): this.type
   def setNumIterations(numIterations: Int): this.type
-  def setInitialWeights(initialWeights: Vector): this.type 
+  def setInitialWeights(initialWeights: Vector): this.type
 }
 ```
 
 The actual learning algorithm is implemented in `StreamingForgetfulLinearRegressionAlgorithm`. We will override the `run` method with our algorithm implementation. The \\(cXX\\) and \\(cXY\\) will be persisted as private members of this class.
+
 ``` scala
 class StreamingForgetfulLinearRegressionAlgorithm
   extends GeneralizedLinearAlgorithm[LinearRegressionModel] with Serializable {
