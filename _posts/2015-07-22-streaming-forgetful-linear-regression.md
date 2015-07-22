@@ -49,7 +49,7 @@ A critical observation is that we only need  \\(X_i^tX_i\\) and  \\(X_i^ty_i\\) 
 At time point \\(i\\), the RDD \\(R_i\\) has \\(n_i\\) records and the feature vectors are of dimension \\(p\\). We have \\(k\\) executioners and we perform \\(q\\) iteration for the gradient descend. The following are the algorithm and computation complexity. 
 
 Steps | Time Complexity
--|-
+------|----------------
 Process \\(R_i\\) in one pass to get \\(X_i^tX_i\\) and  \\(X_i^ty_i\\)  | \\(O(p^2\cdot n / k)\\)
 Set \\(curXX=a \cdot curXX+X_i^tX_i\\) | \\(O(p^2 )\\)
 Set \\(curXY=a \cdot curXY+X_i^ty_i\\) | \\(O(p)\\)
