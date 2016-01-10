@@ -32,3 +32,8 @@ tag_names:
     name: "Python"
   analytics:
     name: "Analytics"
+  rxjava:
+    name: "RxJava"
+  java:
+    name: "Java"
+
